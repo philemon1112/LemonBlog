@@ -8,6 +8,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
 import { createPost, updatePost } from "@/lib/actions/post.actions";
+import { Toaster, toast } from "sonner";
 
 function UpdatePost({userId, postId, newImage, newTitle, newCategory, newTags, newDescription}) {
   const [files, setFiles] = useState([]);
@@ -56,6 +57,16 @@ function UpdatePost({userId, postId, newImage, newTitle, newCategory, newTags, n
       
         if (e.target.files && e.target.files.length > 0) {
           const file = e.target.files[0];
+
+          // Check if the file size is greater than 3MB (3 * 1024 * 1024 bytes)
+          if (file.size > 3 * 1024 * 1024) {
+            toast.error('File size exceeds 3MB limit', {
+                description: 'Please choose a smaller image',
+              })
+            e.target.value = ''; // Clear the input field
+            return;
+          }
+
           setFiles(Array.from(e.target.files));
       
           if (!file.type.includes("image")) return;
@@ -98,31 +109,18 @@ function UpdatePost({userId, postId, newImage, newTitle, newCategory, newTags, n
 
         
         setLoading(false)
-    if (pathname === "/account/edit") {
-        router.back();
-    } else {
-        router.push("/");
-    }
+        toast.success('Post edited successfully')
+
+        router.back()
+    // if (pathname === "/account/edit") {
+    //     router.back();
+    // } else {
+    //     router.push("/");
+    // }
 
   };
   
   return (
-    // <form className="mx-auto max-w-5xl">
-      
-    //     <div className="flex items-center max-w-3xl mx-auto justify-center w-full">
-    //         <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2  border-dashed rounded-lg cursor-pointer bg-black h border-gray-600 hover:border-gray-500 hover:bg-gray-900">
-    //             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-    //                 <svg className="w-8 h-8 mb-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-    //                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-    //                 </svg>
-    //                 <p className="mb-2 text-sm text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-    //                 <p className="text-xs text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-    //             </div>
-    //             <input id="dropzone-file" type="file" className="hidden" />
-    //         </label>
-    //     </div> 
-
-    // </form>
     <form onSubmit={handleSubmit} className="mx-auto grid px-4 max-w-screen-md gap-4 sm:grid-cols-2">
       <div className="sm:col-span-2 pb-4">
         <label   className="mb-2 inline-block text-sm text-gray-300 sm:text-base">Post Title*</label>
@@ -210,6 +208,7 @@ function UpdatePost({userId, postId, newImage, newTitle, newCategory, newTags, n
 
         <span className="text-sm text-gray-500">*Required</span>
       </div>
+      <Toaster position="top-right" richColors/>
     </form>
   )
 }

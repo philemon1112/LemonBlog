@@ -3,6 +3,7 @@ import { fetchPostById, fetchPosts } from '@/lib/actions/post.actions';
 import { currentUser } from '@clerk/nextjs';
 import React from 'react'
 import moment from 'moment';
+import Image from 'next/image';
 
 async function page({params}) {
 
@@ -22,15 +23,16 @@ async function page({params}) {
             <div >
                 <article>
                     <section className="mx-auto max-w-5xl px-1 pt-24 pb-16 text-center">
-                        <p className="text-gray-200">Published {moment(post?.createdAt).format('LL')} </p>
+                    <span className="bg-[#FFF44F] mt-4 rounded-full px-3 py-1 mb-1 text-sm font-semibold text-black">{post?.category}</span>
+                        <p className="text-gray-200 pt-1">Published {moment(post?.createdAt).format('LL')} </p>
                         <h1 className="mt-2 text-3xl font-bold text-white sm:text-5xl pb-2">{post?.title}</h1>
                         {/* <p className="mt-6 text-lg text-gray-200">{post?.category}</p> */}
-                        <span className="bg-[#FFF44F] mt-6 rounded-full px-3 py-1 text-sm font-semibold text-black">{post?.category}</span>
+                        
                         <div className="mt-6 flex flex-wrap justify-center gap-2 md:gap-4" aria-label="Tags">
                            
                            {post?.tags.map((tag)=> (
-                                <div key={tag} className="bg-black py-1.5 px-2.5 md:py-3 md:px-5 text-white border border-white text-sm md:text-base font-medium md:font-semibold rounded-full hover:shadow-lg transition duration-3000 cursor-pointer">
-                                    <span> # tag</span>
+                                <div key={tag} className="bg-black py-1 px-2.5 md:py-2.5 md:px-4 text-white border border-white text-sm md:text-base font-medium md:font-semibold rounded-full hover:shadow-lg transition duration-3000 cursor-pointer">
+                                    <span> # {tag} </span>
                                 </div>
                            ))}
                            
@@ -49,10 +51,12 @@ async function page({params}) {
 
                     <div className="mx-auto p-2 lg:max-w-3xl">
                         <div className="relative w-full transition-shadow duration-300 hover:shadow-xl">
-                            <img
+                            <Image
                                 className="object-cover w-full h-56 rounded-lg shadow-lg sm:h-64 md:h-80 lg:h-96"
                                 src={post?.image}
                                 alt="iman of post"
+                                width={50}
+                                height={50}
                             />
                             <div
                                 aria-label="Read Post"

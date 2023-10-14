@@ -1,5 +1,5 @@
 import React from 'react'
-import MarqueeLogos from '../Hero/Marquee'
+import MarqueeText from '../Hero/Marquee'
 
 function TrendingSection() {
   return (
@@ -12,7 +12,7 @@ function TrendingSection() {
                 Trending Topics 
             </h2>
         </div>
-        <MarqueeLogos />
+        <MarqueeText />
     </div>
   )
 }

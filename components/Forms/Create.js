@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-// import styles from "./writePage.module.css";
 import { useEffect, useState } from "react";
-// import "react-quill/dist/quill.bubble.css";
 import { useRouter, usePathname } from "next/navigation";
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
 import { createPost } from "@/lib/actions/post.actions";
+import { Toaster, toast } from "sonner";
 
 function UploadPost({userId}) {
   const [files, setFiles] = useState([]);
@@ -56,6 +55,16 @@ function UploadPost({userId}) {
       
         if (e.target.files && e.target.files.length > 0) {
           const file = e.target.files[0];
+
+          // Check if the file size is greater than 3MB (3 * 1024 * 1024 bytes)
+          if (file.size > 3 * 1024 * 1024) {
+            toast.error('File size exceeds 3MB limit', {
+              description: 'Please choose a smaller image',
+            })
+            e.target.value = ''; // Clear the input field
+            return;
+          }
+
           setFiles(Array.from(e.target.files));
       
           if (!file.type.includes("image")) return;
@@ -96,7 +105,7 @@ function UploadPost({userId}) {
             slug: slugify(title)
           });
 
-        
+        toast.success('Post created successfully')
         setLoading(false)
     if (pathname === "/account/edit") {
         router.back();
@@ -138,7 +147,7 @@ function UploadPost({userId}) {
         <ul className="mt-3 ">
           {tags.map((tag, index) => (
             <li key={index} className=" flex mb-2 items-center text-white">
-                <div className="bg-black w-fit py-1.5 px-2.5 border border-gray-100 md:py-3 md:px-5 text-white text-sm md:text-base font-medium md:font-semibold rounded-full hover:shadow-lg transition duration-3000 cursor-pointer">
+                <div className="bg-black w-fit py-1 px-2.5 border border-gray-100 md:py-2.5 md:px-4 text-white text-sm md:text-base font-medium md:font-semibold rounded-full hover:shadow-lg transition duration-3000 cursor-pointer">
                     <span>{tag}{' '}</span>
                 </div>
               <button
@@ -205,6 +214,7 @@ function UploadPost({userId}) {
 
         <span className="text-sm text-gray-400">*Required</span>
       </div>
+      <Toaster position="top-right" richColors/>
     </form>
   )
 }

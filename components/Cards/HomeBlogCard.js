@@ -19,13 +19,15 @@ function HomeBlogCard({id,author,title,tags,image,category,description}) {
 
                 <span className="absolute right-0 top-0 rounded-bl-lg bg-[#FFF44F] px-3 py-1.5 text-sm uppercase tracking-wider text-black">read</span>
                 <div className="absolute bottom-2 left-4 ">
-                    <Link href={`/account/${author?.id}`} replace className="flex  bg-white w-fit items-center p-1 border rounded-full">
+                    <Link 
+                        href={`/account/${author?.id}`} 
+                        className="flex  bg-white w-fit items-center p-1 border rounded-full">
                         <Image
                             alt="profile"
                             src={author?.image}
-                            width={38}
-                            height={38}
-                            className="w-10 mx-auto h-10 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
+                            width={36}
+                            height={36}
+                            className="w-9 mx-auto h-9 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                         />
                         {/* <img src={author?.image} alt="avatar" className="object-cover w-10 h-10 rounded-full bg-black" /> */}
                         <span className="hover:underline font-medium text-black mx-1.5">{author?.username}</span>
@@ -34,8 +36,8 @@ function HomeBlogCard({id,author,title,tags,image,category,description}) {
             </div>
 
             <div>
-                <Link href={`blogs/${id}`}>
-                    <h3 className="text-xl font-medium text-gray-100">
+                <Link href={`/blogs/${id}`}>
+                    <h3 className="text-xl line-clamp-2 font-medium text-gray-100">
                         {title}
                     </h3>
                 </Link>

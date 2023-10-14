@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function HeroText() {
@@ -13,12 +14,12 @@ function HeroText() {
                 </h1>
                 <p className="mt-5 text-base text-gray-200 sm:text-xl"><span>Discover inspiring stories, helpful tips, and thought-provoking ideas from a variety of topics.</span></p>
 
-                <a href="#" title="" className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-black transition-all duration-200 bg-[#FFF44F] rounded-full sm:mt-16 hover:bg-blue-700 focus:bg-blue-700" role="button">
+                <Link href="/blogs" title="" className="inline-flex items-center px-6 py-4 mt-8 font-semibold text-black transition-all duration-200 bg-[#FFF44F] rounded-full sm:mt-16 hover:brightness-75 focus:brightness-75" role="button">
                    Start Reading
                     <svg className="w-6 h-6 ml-6 -mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                </a>
+                </Link>
 
                 <div className="grid grid-cols-1 px-20 mt-12 text-left gap-x-12 gap-y-8 sm:grid-cols-3 sm:px-0">
                     <div className="flex items-center">

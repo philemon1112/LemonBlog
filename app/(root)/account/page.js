@@ -82,8 +82,9 @@ async function page() {
                                 key={post?._id}
                                 id={post._id}
                                 title={post.title} 
-                                author={userInfo} 
-                                category={post.category} 
+                                // author={{name:post?.author?.name, image:post?.author?.image, id:post?.author?.id}} 
+                                author={userInfo}
+                                category={post.category}  
                                 image={post.image} 
                                 tags={post.tags} 
                                 description={post.description} 

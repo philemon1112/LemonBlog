@@ -5,6 +5,7 @@ import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
 import { updateUser } from '@/lib/actions/user.actions';
 import { usePathname, useRouter } from 'next/navigation';
+import { Toaster, toast } from 'sonner';
 
 function AccountProfile({user}) {
     const [loading, setLoading] = useState(false)
@@ -43,32 +44,13 @@ function AccountProfile({user}) {
           });
   
         setLoading(false)
-
+        toast.success("Account creation done")
         if (pathname === "/account/edit") {
             router.back();
         } else {
             router.push("/");
         }
     }
-
-    // const handleImage = (e, fieldChange) => {
-    //     e.preventDefault(e);
-    //     const fileReader = new FileReader();
-    
-    //     if (e.target.files && e.target.files.length > 0) {
-    //       const file = e.target.files[0];
-    //       setFiles(Array.from(e.target.files));
-    
-    //       if (!file.type.includes("image")) return;
-    
-    //       fileReader.onload = async (event) => {
-    //         const imageDataUrl = event.target?.result?.toString() || "";
-    //         fieldChange(imageDataUrl);
-    //       };
-    
-    //       fileReader.readAsDataURL(file);
-    //     }
-    // }
 
     const handleImage = (e) => {
         e.preventDefault();
@@ -77,6 +59,15 @@ function AccountProfile({user}) {
       
         if (e.target.files && e.target.files.length > 0) {
           const file = e.target.files[0];
+
+          // Check if the file size is greater than 3MB (3 * 1024 * 1024 bytes)
+          if (file.size > 3 * 1024 * 1024) {
+            toast.error('File size exceeds 3MB limit', {
+                description: 'Please choose a smaller image',
+            })
+            e.target.value = ''; // Clear the input field
+            return;
+          }
           setFiles(Array.from(e.target.files));
       
           if (!file.type.includes("image")) return;
@@ -195,7 +186,8 @@ function AccountProfile({user}) {
                     )
                 }
             </button> 
-        </center>             
+        </center>  
+        <Toaster position="top-right" richColors/>           
     </form>
   )
 }

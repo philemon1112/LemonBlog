@@ -3,6 +3,7 @@
 import { deletePost } from '@/lib/actions/post.actions';
 import { usePathname, useRouter } from "next/navigation";
 import React from 'react'
+import { Toaster, toast } from 'sonner';
 
 function DeletePost({title,postId}) {
 
@@ -15,11 +16,15 @@ function DeletePost({title,postId}) {
             postId:postId
           });
 
-    if (pathname === "/account/delete") {
-        router.back();
-    } else {
-        router.push("/");
-    }
+        toast.success("Post deleted successfully")
+
+        router.back()
+
+    // if (pathname === "/account/delete") {
+    //     router.back();
+    // } else {
+    //     router.push("/");
+    // }
 }
 
   return (
@@ -51,7 +56,7 @@ function DeletePost({title,postId}) {
             </div>
             <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                    <button onClick={handleDelete()} type="button"
+                    <button onClick={handleDelete} type="button"
                         className="inline-flex justify-center w-full rounded-full border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                         Delete
                     </button>
@@ -65,6 +70,7 @@ function DeletePost({title,postId}) {
             </div>
         </div>
     </div>
+    <Toaster position="top-right" richColors/>
 </div>
   )
 }
