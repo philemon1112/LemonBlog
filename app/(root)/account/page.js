@@ -5,12 +5,13 @@ import { fetchUser, fetchUserPosts } from '@/lib/actions/user.actions';
 import UserBlogCard from '@/components/Cards/UserBlogCard';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 async function page() {
 
     const user = await currentUser();
 
-    if(!user) redirect('/');
+    if(!user) redirect('/sign-in');
 
     const userInfo = await fetchUser(user?.id);
     const userPost = await fetchUserPosts(user?.id)
@@ -26,7 +27,7 @@ async function page() {
                             alt="profile "
                             width={112}
                             height={112}
-                            className="object-cover mx-auto rounded-full"
+                           className="w-32 mx-auto group-hover:w-36 group-hover:h-36 h-32 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                         />
                         <p className="mt-6 text-lg font-semibold text-white">{user?.firstName} {user?.lastName} <span className="font-normal text-gray-500">{userInfo?.username}</span></p>
                     </div>
@@ -55,23 +56,44 @@ async function page() {
             </div>
 
             <div className="mb-2 mt-20 md:mb-10">
-                <h2 className="mb-8 text-xl font-semibold text-gray-200 md:mb-6 lg:text-2xl">Your Posts</h2>
+                <h2 className="mb-8 text-xl font-semibold text-gray-200 md:mb-6 lg:text-2xl">{userPost.post?.length === 0 ? "You have no Post":"Your Posts" }</h2>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 xl:gap-12 mb-16">
-            {userPost.posts.map((post)=> (
-                    <UserBlogCard
-                        key={post?._id}
-                        id={post._id}
-                        title={post.title} 
-                        author={userInfo} 
-                        category={post.category} 
-                        image={post.image} 
-                        tags={post.tags} 
-                        description={post.description} 
-                        slug={post.slug} 
-                        createdAt={post.createdAt} 
-                    />
-                ))}
+                {userPost?.post?.length === 0 ? 
+                    (
+                        <div className='text-center'>
+                            <Link href="/new">
+                                <button type="button" className="px-8 py-3 font-semibold inline-flex items-center gap-2 rounded-full bg-gray-100 text-black">
+                                    <span>
+                                        Create your first post
+                                    </span> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>
+                                </button>
+                            </Link>
+                        </div>
+                    )
+                    :
+                    (
+                        <>
+                        {userPost.posts.map((post)=> (
+                            <UserBlogCard
+                                key={post?._id}
+                                id={post._id}
+                                title={post.title} 
+                                author={userInfo} 
+                                category={post.category} 
+                                image={post.image} 
+                                tags={post.tags} 
+                                description={post.description} 
+                                slug={post.slug} 
+                                createdAt={post.createdAt} 
+                            />
+                        ))}
+                        </>
+                    )
+                }
             </div>
         </div>
     )

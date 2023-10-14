@@ -21,7 +21,7 @@ async function page({params}) {
         <main className='bg-black'>
             <div >
                 <article>
-                    <section className="mx-auto max-w-screen-xl px-1 pt-24 pb-16 text-center">
+                    <section className="mx-auto max-w-5xl px-1 pt-24 pb-16 text-center">
                         <p className="text-gray-200">Published {moment(post?.createdAt).format('LL')} </p>
                         <h1 className="mt-2 text-3xl font-bold text-white sm:text-5xl pb-2">{post?.title}</h1>
                         {/* <p className="mt-6 text-lg text-gray-200">{post?.category}</p> */}
@@ -54,8 +54,7 @@ async function page({params}) {
                                 src={post?.image}
                                 alt="iman of post"
                             />
-                            <a
-                                href="/"
+                            <div
                                 aria-label="Read Post"
                                 className="absolute bottom-10 inset-0 flex items-center justify-center w-full h-full transition-colors duration-300 bg-gray-900 bg-opacity-50 group hover:bg-opacity-25"
                             >
@@ -66,7 +65,7 @@ async function page({params}) {
                                 </svg>
 
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
 

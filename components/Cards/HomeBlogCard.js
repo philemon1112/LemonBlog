@@ -25,7 +25,7 @@ function HomeBlogCard({id,author,title,tags,image,category,description}) {
                             src={author?.image}
                             width={38}
                             height={38}
-                            className="object-cover rounded-full"
+                            className="w-10 mx-auto h-10 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                         />
                         {/* <img src={author?.image} alt="avatar" className="object-cover w-10 h-10 rounded-full bg-black" /> */}
                         <span className="hover:underline font-medium text-black mx-1.5">{author?.username}</span>
