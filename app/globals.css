@@ -18,10 +18,43 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #000;
+}
+
+
+
+
+/* Marquee container styles */
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Marquee content styles */
+.marquee-content {
+  display: flex;
+  animation: marquee-scroll 30s linear infinite;
+  /* Set initial position to the right */
+  transform: translateX(100%);
+}
+
+/* Marquee gradient styles */
+.marquee-gradient {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: linear-gradient(to left, transparent 0%, white 100%);
+  pointer-events: none;
+}
+
+/* Keyframes for marquee scrolling animation */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
