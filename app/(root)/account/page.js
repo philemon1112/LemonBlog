@@ -58,6 +58,7 @@ async function page() {
             <div className="mb-2 mt-20 md:mb-10">
                 <h2 className="mb-8 text-xl font-semibold text-gray-200 md:mb-6 lg:text-2xl">{userPost.post?.length === 0 ? "You have no Post":"Your Posts" }</h2>
             </div>
+            <p className="text-white">{userPost?.post?.length}</p>
             <div className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 xl:gap-12 mb-16">
                 {userPost?.post?.length === 0 ? 
                     (
@@ -85,7 +86,7 @@ async function page() {
                                 // author={{name:post?.author?.name, image:post?.author?.image, id:post?.author?.id}} 
                                 author={userInfo}
                                 category={post.category}  
-                                image={post.image} 
+                                image={post?.image} 
                                 tags={post.tags} 
                                 description={post.description} 
                                 slug={post.slug} 

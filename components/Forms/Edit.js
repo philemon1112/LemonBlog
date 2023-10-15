@@ -108,15 +108,13 @@ function UpdatePost({userId, postId, newImage, newTitle, newCategory, newTags, n
           });
 
         
-        setLoading(false)
+        
         toast.success('Post edited successfully')
 
-        router.back()
-    // if (pathname === "/account/edit") {
-    //     router.back();
-    // } else {
-    //     router.push("/");
-    // }
+        setTimeout(() => {
+            setLoading(false);
+              router.back();
+          }, 2000); // 
 
   };
   

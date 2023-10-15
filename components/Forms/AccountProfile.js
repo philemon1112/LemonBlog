@@ -43,13 +43,17 @@ function AccountProfile({user}) {
             image: imagePreview ? imagePreview : user?.image,
           });
   
-        setLoading(false)
         toast.success("Account creation done")
-        if (pathname === "/account/edit") {
-            router.back();
-        } else {
-            router.push("/");
-        }
+
+        setTimeout(() => {
+            setLoading(false);
+            if (pathname === "/account/edit") {
+                router.back();
+            } else {
+                router.push("/");
+            }
+          }, 2000); // 
+        
     }
 
     const handleImage = (e) => {

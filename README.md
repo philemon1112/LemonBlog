@@ -1,3 +1,51 @@
+
+# Lemon's Blog
+
+## Project Structure
+
+```bash
+.
+├── app/
+    ├── (auth)/
+    ├── (root)/
+├── components/
+    ├── Cards/
+    ├── Forms/
+    ├── Hero/
+    ├── Layout/
+    ├── Sections/
+    ├── Shared/
+├── lib/
+    ├── actions/
+    ├── models/
+├── public/
+    ├── Asets/
+        ├── Img/
+        ├── Svg/
+
+
+```
+
+[`public/Assets`]("./public/Assets")
+
+- Contains images and some SVG icons used in the project
+
+[`components`]("./src/components")
+
+- Contains reusable components such as cards, forms, Layout, various page sections, and shared components
+
+[`app/(root)`]("./src/HOC")
+
+- Contains Higher Order Components(that is, components that have components as `children`)
+
+[`src/pages`]("./src/pages")
+
+- Contains various pages
+
+[`src/styles`]("./src/styles")
+
+- Contains all the styled-components styles for the reusable components
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

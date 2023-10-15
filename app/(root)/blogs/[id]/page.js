@@ -104,18 +104,18 @@ async function page({params}) {
                         <div className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 xl:gap-12">
                         {result?.posts?.map((post)=> (
                             <HomeBlogCard
-                            key={post?._id}
-                            id={post._id}
-                            title={post.title} 
-                            author={post.author } 
-                            category={post.category} 
-                            image={post.image} 
-                            tags={post.tags} 
-                            description={post.description} 
-                            slug={post.slug} 
-                            createdAt={post.createdAt} 
-                            />
-                        ))}
+                                key={post?._id}
+                                id={post._id}
+                                title={post.title} 
+                                author={post.author } 
+                                category={post.category} 
+                                image={post?.image} 
+                                tags={post.tags} 
+                                description={post.description} 
+                                slug={post.slug} 
+                                createdAt={post.createdAt} 
+                                />
+                            ))}
                         </div>
                     </section>
                 )

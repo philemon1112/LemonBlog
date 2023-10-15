@@ -94,7 +94,7 @@ function BlogFiltering({data}) {
                                 title={post.title} 
                                 author={post.author } 
                                 category={post.category} 
-                                image={post.image} 
+                                image={post?.image} 
                                 tags={post.tags} 
                                 description={post.description} 
                                 slug={post.slug} 

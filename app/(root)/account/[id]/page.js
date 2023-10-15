@@ -2,7 +2,6 @@ import { fetchPostById, fetchPosts } from '@/lib/actions/post.actions';
 import { currentUser } from '@clerk/nextjs';
 import React from 'react'
 import { fetchUser, fetchUserPosts } from '@/lib/actions/user.actions';
-import UserBlogCard from '@/components/Cards/UserBlogCard';
 import Image from 'next/image';
 import HomeBlogCard from '@/components/Cards/HomeBlogCard';
 
@@ -25,7 +24,7 @@ async function page({params}) {
                             alt="profile "
                             width={112}
                             height={112}
-                            className="object-cover mx-auto rounded-full"
+                           className="w-32 mx-auto group-hover:w-36 group-hover:h-36 h-32 object-center object-cover rounded-full transition-all duration-500 delay-500 transform"
                         />
                         {/* <img className="object-cover w-32 h-32 mx-auto rounded-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/4/avatar.jpg" alt="" /> */}
                         <p className="mt-6 text-lg font-semibold text-white">{userInfo?.name}, <span className="font-normal text-gray-600">{userInfo?.username}</span></p>
@@ -70,6 +69,8 @@ async function page({params}) {
             <div className="mb-2 mt-20 md:mb-10">
                 <h2 className="mb-8 text-xl font-semibold text-gray-200 md:mb-6 lg:text-2xl">Users Post</h2>
             </div>
+
+
             <div className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 xl:gap-12 mb-16">
                 {userPost.posts.map((post)=> (
                     <HomeBlogCard
@@ -78,16 +79,13 @@ async function page({params}) {
                         title={post.title} 
                         author={userInfo} 
                         category={post.category} 
-                        image={post.image} 
+                        image={post?.image} 
                         tags={post.tags} 
                         description={post.description} 
                         slug={post.slug} 
                         createdAt={post.createdAt} 
                     />
                 ))}
-                    {/* <UserBlogCard />
-                    <UserBlogCard />
-                    <UserBlogCard /> */}
             </div>
         </div>
     )

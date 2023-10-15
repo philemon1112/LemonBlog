@@ -1,6 +1,19 @@
-import React from 'react'
+"use client"
+import React, {useEffect, useState} from 'react'
+import { Toaster, toast } from 'sonner'
 
 function Banner() {
+  const [toastDisplayed, setToastDisplayed] = useState(false);
+
+  useEffect(() => {
+    if (!toastDisplayed) {
+      toast.message('Apologies!', {
+        description: 'Post filtering and search are currently unavailable. We are working to bring this feature to you soon.',
+      });
+      setToastDisplayed(true);
+    }
+  }, [toastDisplayed]);
+
   return (
     <div className='max-w-6xl mx-auto bg-black pt-10 md:pt-20'>
         <div className="py-4 sm:py-8 lg:py-2">
@@ -15,6 +28,8 @@ function Banner() {
                 </p>
             </div>
         </div>
+
+        <Toaster closeButton />
     </div>
   )
 }

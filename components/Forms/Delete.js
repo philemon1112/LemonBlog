@@ -18,7 +18,9 @@ function DeletePost({title,postId}) {
 
         toast.success("Post deleted successfully")
 
-        router.back()
+        setTimeout(() => {
+              router.back();
+          }, 2000); // 
 
     // if (pathname === "/account/delete") {
     //     router.back();

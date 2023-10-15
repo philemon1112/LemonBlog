@@ -106,12 +106,18 @@ function UploadPost({userId}) {
           });
 
         toast.success('Post created successfully')
-        setLoading(false)
-    if (pathname === "/account/edit") {
-        router.back();
-    } else {
-        router.push("/");
-    }
+        
+
+        // Introduce a delay (e.g., 2 seconds) before redirecting, for success toast to display
+        setTimeout(() => {
+          setLoading(false);
+
+          if (pathname === '/post/edit') {
+            router.back();
+          } else {
+            router.push('/');
+          }
+        }, 2000); // 
 
   };
   

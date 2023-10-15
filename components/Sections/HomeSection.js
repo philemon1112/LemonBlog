@@ -30,7 +30,7 @@ async function HomeSection() {
           )
           :
           (
-            <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-10">
+            <div className="grid gap-6 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-3 xl:gap-10">
               {result?.posts?.map((post)=> (
                 <HomeBlogCard
                   key={post?._id}
@@ -39,7 +39,7 @@ async function HomeSection() {
                   title={post.title} 
                   author={post.author } 
                   category={post.category} 
-                  image={post.image} 
+                  image={post?.image} 
                   tags={post.tags} 
                   description={post.description} 
                   slug={post.slug} 
