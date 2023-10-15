@@ -1,13 +1,30 @@
 
 # Lemon's Blog
+A simple blog site with CRUD functionalities, made with nextjs 13 , clerk for authentication, MongoDb for database
 
+### Showcase
+
+#### Home page
+
+![Home page](https://github.com/philemon1112/LemonBlog/blob/main/public/Assets/Img/home.png)
+
+#### Blogs page
+![Blogs page](https://github.com/philemon1112/LemonBlog/blob/main/public/Assets/Img/blogs.png)
+
+#### Blogs details page
+![blog details page](https://github.com/philemon1112/LemonBlog/blob/main/public/Assets/Img/blogDetails.png)
+#### User Accounts page
+![user accounts](https://github.com/philemon1112/LemonBlog/blob/main/public/Assets/Img/accounts.png)
+## Project Description
 ## Project Structure
 
 ```bash
-.
+
+
 ├── app/
     ├── (auth)/
     ├── (root)/
+    ├── api/
 ├── components/
     ├── Cards/
     ├── Forms/
@@ -26,29 +43,30 @@
 
 ```
 
+[`app/(root)`]("app/(root)")
+
+- This contain the main pages route and pages for the application apart from the auth pages , It includes a home page `/`, all blogs page `/blogs` , blog details page `/blogs/[]`, user account page `/account` and authors profile page `/account/[]`, it also consist of the creat `/new`, edit `/edit` and delete pages `/delete` for post
+
+[`app/(auth)`]("app/(auth)")
+- This contains pages which require user authentication it consist of the sign in page `/sign-in`, sign up page `sign-up` and the onboarding screen `/onboarding`
+
+[`app/api`]("app/(api)")
+- This contains the uploadthing api , and a custom api to fetch for blog posts
+
 [`public/Assets`]("./public/Assets")
 
 - Contains images and some SVG icons used in the project
 
-[`components`]("./src/components")
+[`components`]("/components")
 
 - Contains reusable components such as cards, forms, Layout, various page sections, and shared components
 
-[`app/(root)`]("./src/HOC")
+[`lib/`]("lib")
 
-- Contains Higher Order Components(that is, components that have components as `children`)
+- This is the lib folder of the application it contains the server actions to `(MONGODB)` database in the `actions` route, it also has mongoDb projects Schema's in the `models` and some other files containing utility functions, mongoDB connection and uploadthing react-hooks
 
-[`src/pages`]("./src/pages")
 
-- Contains various pages
-
-[`src/styles`]("./src/styles")
-
-- Contains all the styled-components styles for the reusable components
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
+## How to setup
 
 First, run the development server:
 
@@ -68,17 +86,36 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+Below is the `.env.local` file that is found in the root directory of the project. All this must be provided for the application to function well
+
+``` bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+
+MONGODB_URL =
+
+```
+
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+This project makes use of a list of npm packages. They can be installed during the process of setting up the application using `npm install`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `Uploadthing` - for Image upload
+- `momentjs` - For date/time conversion to a more readable and understandable format
+- `clerk` - For easy user authentication management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `axios` - For making external api calls / request
 
-## Deploy on Vercel
+- `sonner` - For displaying in-app toast notifications 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `mongoose` -  For enforcing a specific schema at the application layer
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The nextjs project also came with already installed packages such as `next`, `react` and `react-dom`.
+
+
+
