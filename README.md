@@ -16,6 +16,7 @@ A simple blog site with CRUD functionalities, made with nextjs 13 , clerk for au
 #### User Accounts page
 ![user accounts](https://github.com/philemon1112/LemonBlog/blob/main/public/Assets/Img/accounts.png)
 ## Project Description
+This is a simple Blog Application built with nextjs 13. It makes use of nextjs 13 new experimental feature `Server Actions`. This project was built as part of `slightly Techie` application, hope they like it 🥺
 ## Project Structure
 
 ```bash
