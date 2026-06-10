@@ -1,11 +1,9 @@
-// import AccountProfile from "@/components/forms/AccountProfile"
-// import { fetchUser } from "@/lib/actions/user.actions";
 import AccountProfile from "@/components/Forms/AccountProfile";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { UserButton, UserProfile } from "@clerk/nextjs"
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation";
 
+export const dynamic = 'force-dynamic';
 
 async function Page(){
 

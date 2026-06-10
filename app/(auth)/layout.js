@@ -2,6 +2,8 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { Inter } from "next/font/google"
 import '../globals.css';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'Lemon Blog',
     description: "Lemon Blog | version 1.3"
