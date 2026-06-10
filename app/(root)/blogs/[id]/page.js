@@ -1,22 +1,14 @@
 import HomeBlogCard from '@/components/Cards/HomeBlogCard'
 import { fetchPostById, fetchPosts } from '@/lib/actions/post.actions';
-import { currentUser } from '@clerk/nextjs';
 import React from 'react'
 import moment from 'moment';
 import Image from 'next/image';
 
 async function page({params}) {
+    const { id } = await params;
 
-    // const user = await currentUser();
-
-    // if(!user) return null;
-    // if (!params?.id) return null;
-
-    // const userInfo = await fetchUser(user?.id);
-    // if(!userInfo?.onboarded) redirect('/onboarding')
     const result= await fetchPosts(1, 3);
-    const post = await fetchPostById(params?.id)
-    // console.log(post)
+    const post = await fetchPostById(id)
 
     return (
         <main className='bg-black'>

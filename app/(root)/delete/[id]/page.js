@@ -1,17 +1,18 @@
 import DeletePost from '@/components/Forms/Delete';
 import { deletePost, fetchPostById } from '@/lib/actions/post.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
-import { currentUser } from '@clerk/nextjs';
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from "next/navigation";
 import React from 'react'
 
 async function page({params}) {
+    const { id } = await params;
 
     const user = await currentUser();
 
     if(!user) return null;
 
-    const post = await fetchPostById(params?.id)
+    const post = await fetchPostById(id)
 
 
   return (

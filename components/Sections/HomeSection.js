@@ -1,7 +1,7 @@
 import React from 'react'
 import HomeBlogCard from '../Cards/HomeBlogCard'
 import { fetchPosts } from '@/lib/actions/post.actions';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 
 async function HomeSection() {
 

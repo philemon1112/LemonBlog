@@ -1,18 +1,18 @@
-import { fetchPostById, fetchPosts } from '@/lib/actions/post.actions';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import React from 'react'
 import { fetchUser, fetchUserPosts } from '@/lib/actions/user.actions';
 import Image from 'next/image';
 import HomeBlogCard from '@/components/Cards/HomeBlogCard';
 
 async function page({params}) {
+    const { id } = await params;
 
     const user = await currentUser();
 
-    if (!params?.id) return null;
+    if (!id) return null;
 
-    const userInfo = await fetchUser(params?.id);
-    const userPost = await fetchUserPosts(params?.id)
+    const userInfo = await fetchUser(id);
+    const userPost = await fetchUserPosts(id)
 
     return (
         <div className="mx-auto max-w-screen-lg md:px-4 px-2">

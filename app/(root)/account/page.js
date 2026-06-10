@@ -1,5 +1,4 @@
-import { fetchPostById, fetchPosts } from '@/lib/actions/post.actions';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import React from 'react'
 import { fetchUser, fetchUserPosts } from '@/lib/actions/user.actions';
 import UserBlogCard from '@/components/Cards/UserBlogCard';
@@ -83,7 +82,6 @@ async function page() {
                                 key={post?._id}
                                 id={post._id}
                                 title={post.title} 
-                                // author={{name:post?.author?.name, image:post?.author?.image, id:post?.author?.id}} 
                                 author={userInfo}
                                 category={post.category}  
                                 image={post?.image} 

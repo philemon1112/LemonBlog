@@ -1,6 +1,6 @@
 import UploadPost from '@/components/Forms/Create'
 import { fetchUser } from '@/lib/actions/user.actions';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from "next/navigation";
 import React from 'react'
 
