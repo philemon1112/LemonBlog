@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     serverExternalPackages: ["mongoose"],
-    serverActions: {
-        bodySizeLimit: '5mb',
-    },
     images: {
         remotePatterns: [
           {

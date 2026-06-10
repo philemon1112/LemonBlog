@@ -2,7 +2,7 @@ import DeletePost from '@/components/Forms/Delete';
 import { deletePost, fetchPostById } from '@/lib/actions/post.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 import { currentUser } from '@clerk/nextjs/server';
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import React from 'react'
 
 async function page({params}) {
