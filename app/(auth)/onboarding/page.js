@@ -2,7 +2,8 @@
 // import { fetchUser } from "@/lib/actions/user.actions";
 import AccountProfile from "@/components/Forms/AccountProfile";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { UserButton, UserProfile, currentUser } from "@clerk/nextjs"
+import { UserButton, UserProfile } from "@clerk/nextjs"
+import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation";
 
 

@@ -1,19 +1,18 @@
-import UploadPost from '@/components/Forms/Create'
 import UpdatePost from '@/components/Forms/Edit';
 import { fetchPostById } from '@/lib/actions/post.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from "next/navigation";
 import React from 'react'
 
 async function page({params}) {
-
+    const { id } = await params;
 
     const user = await currentUser();
 
     if(!user) return null;
 
-    const post = await fetchPostById(params?.id)
+    const post = await fetchPostById(id)
     const userInfo = await fetchUser(user.id) ;
 
     const simpleData = {
