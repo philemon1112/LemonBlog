@@ -8,6 +8,8 @@ import Loading from './loading'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Lemons Blog',
   description: 'Journey Through Words and Ideas',
